@@ -1,6 +1,6 @@
 ## 👋 Welcome to prowlarr 🚀  
 
-prowlarr README  
+Prowlarr is a indexer manager/proxy built on the popular arr .net/reactjs base stack to integrate with your various PVR apps.  Prowlarr supports both Torrent Trackers and Usenet Indexers. It integrates seamlessly with Sonarr, Radarr, Lidarr, and Readarr.  offering complete management of your indexers with no per app Indexer setup required  
   
   
 ## Install my system scripts  
@@ -27,10 +27,11 @@ docker run -d \
 --privileged \
 --name casjaysdevdocker-prowlarr \
 --hostname prowlarr \
+-e PUID=1000 \
+-e PGID=1000 \
 -e TZ=${TIMEZONE:-America/New_York} \
--v $HOME/.local/share/srv/docker/casjaysdevdocker-prowlarr/rootfs/data:/data:z \
 -v $HOME/.local/share/srv/docker/casjaysdevdocker-prowlarr/rootfs/config:/config:z \
--p 80:80 \
+-p 0.0.0.0:9696:9696 \
 casjaysdevdocker/prowlarr:latest
 ```
   
