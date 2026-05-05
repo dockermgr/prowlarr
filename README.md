@@ -19,9 +19,9 @@ dockermgr update prowlarr
 ## Install and run container
   
 ```shell
-mkdir -p "$HOME/.local/share/srv/docker/prowlarr/rootfs"
+mkdir -p "$HOME/.local/share/srv/docker/prowlarr/volumes"
 git clone "https://github.com/dockermgr/prowlarr" "$HOME/.local/share/CasjaysDev/dockermgr/prowlarr"
-cp -Rfva "$HOME/.local/share/CasjaysDev/dockermgr/prowlarr/rootfs/." "$HOME/.local/share/srv/docker/prowlarr/rootfs/"
+cp -Rfva "$HOME/.local/share/CasjaysDev/dockermgr/prowlarr/volumes/." "$HOME/.local/share/srv/docker/prowlarr/volumes/"
 docker run -d \
 --restart always \
 --privileged \
@@ -30,7 +30,7 @@ docker run -d \
 -e PUID=1000 \
 -e PGID=1000 \
 -e TZ=${TIMEZONE:-America/New_York} \
--v $HOME/.local/share/srv/docker/casjaysdevdocker-prowlarr/rootfs/config:/config:z \
+-v $HOME/.local/share/srv/docker/casjaysdevdocker-prowlarr/volumes/config:/config:z \
 -p 0.0.0.0:9696:9696 \
 casjaysdevdocker/prowlarr:latest
 ```
@@ -47,8 +47,8 @@ services:
       - TZ=America/New_York
       - HOSTNAME=prowlarr
     volumes:
-      - $HOME/.local/share/srv/docker/casjaysdevdocker-prowlarr/rootfs/data:/data:z
-      - $HOME/.local/share/srv/docker/casjaysdevdocker-prowlarr/rootfs/config:/config:z
+      - $HOME/.local/share/srv/docker/casjaysdevdocker-prowlarr/volumes/data:/data:z
+      - $HOME/.local/share/srv/docker/casjaysdevdocker-prowlarr/volumes/config:/config:z
     ports:
       - 80:80
     restart: always
